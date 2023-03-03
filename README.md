@@ -1,5 +1,5 @@
 # GIT-Udemy-Tutorial-Demo-website-
 
-This is an awesome website . Some changes
+This is an awesome website.
 
 Now editing on update-readme branch
