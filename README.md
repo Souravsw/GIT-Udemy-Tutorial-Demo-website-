@@ -10,3 +10,4 @@ Updates made in main branch before rebase
 ##REPO Purpose
 
 Its just README file
+The purpose of this file is to show how to use Git and github together
