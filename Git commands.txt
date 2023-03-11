@@ -1,0 +1,149 @@
+1.Create new repository=> git init <name of project/working folder>
+2.Status=> git status
+3.Move to staging area=> git add <File name> OR git add . (for all files)
+4.Committing files=> git commit -m "<some message>"
+5.Getting log of commits in the repo=> git log (to get out of log command press 'q')
+6.Getting last commit along with diff changes=> git show
+(to get out of show command press 'q')
+7.Get list of files tracked by git=> git ls-files
+8.Express commit[without message(-m) parameter]=> git commit -a (here '-a' means it adds to the staging area itself and opens the editor for entering the commit message. And after saving and closing the editor it directly commits the files)
+9.Express commit[with message(-m) parameter]=> git commit -am "<some message>"(here '-am' means it adds to the staging area itself and directly commits the files with the commit message. Here '-a' and '-m' parameters are combined as '-am')
+10.Unstage files=> git reset HEAD <file name with extension> OR git restore --staged <file name with extension>
+11.Discard changes of files added or modified=> git checkout -- <file name with extension> OR git restore <file name with extension>
+12.Show logs of particular file=> git log <file name with extension>
+13.GIT help commands=> git help OR git --help
+14.Git help for particular command=> git help <command name> (ex:- git help log)
+15.Get all Git config entries=> git config --global --list
+16.Changing file name=> git mv <old file name with extension> <new file name with extension> (ex:- git mv example.txt demo.txt)
+(moving the old file name to a new name effectively renaming the file)
+17.Removing file using git=> git rm <file name with extension>
+18.Getting diff of particular commit against the HEAD=> 
+	a.git diff <commit ID (from git hist[it is an alias] command)> HEAD
+	b.git difftool <commit ID (from git hist command)> HEAD (This opens the configured difftool with Git Bash[P4merge diff tool window]. It shows the diff window for each file in that commit. If you close one window then it opens up another one for the next file an d so on till the last file in that commit)(You can also close the P4merge window using 'ctrl + w')
+19.Getting diff of current changes of modified files against the HEAD=> 
+	a.git diff HEAD
+	b.git difftool HEAD 
+20.Getting diff between two branches=> git diff <branch one> <branch two>
+21.Get list of branches=> git branch
+22.Creating new branch=> git checkout -b <new branch name> (Here '-b' means creating new branch)(Using this command does 2 things-> it creates a new branch and switches to the new branch)
+23.Switching to a diferent branch=> git checkout <branch name>
+24.Merge any branch to the current branch(switch to the branch where you want the other branch changes to be merged)=> git merge <other branch name>
+25.Delete any branch loacally=> git branch -d <branch name>
+26.Add tag to a commit, there are 2 ways:
+	a.Lightweight tag=> git tag <tag name> (ex:- git tag mytag)
+	b.Annotated tag=> git tag -a <tag name> -m "<tag message>" (ex:- git tag -a v1.0 -m "Release 1.0")
+27.Get list of tags=> git tag --list
+28.Remove tag=> git tag -d <tag name>
+29.Stash current changes=> git stash
+30.Show list of stashes=> git stash list
+31.Apply/Pop stash=> git stash pop (It applies the last stash and drops the applied stash)
+32.Reset to a particular commit=>
+	a.git reset <commit ID[from git hist]> --soft
+	b.git reset <commit ID[from git hist]> --mixed (its the default one)
+	c.git reset <commit ID[from git hist]> --hard (its the most destructive one)
+33.Get all git actions done in the repo=> git reflog (press 'q' to get out of reflog)
+34.Cloning repo from remote=> git clone <https url>/<SSH url>(if SSH is configured for the machine) <name of folder>(this is optional) 
+35.Fetch all updates from remote repository=> git fetch
+36.Pull new changes from remote=> git pull (It does two things-> fetches all updates from remote repo and it then merges those changes into our current local repo)
+37.Create branch locally=> git checkout -b(to create branch loacally) <name of branch>(ex- git checkout -b remove-ipsum)
+38.Push locally created branch to remote=> git push --set-upstream <name of remote> <name of branch> (ex-git push --set-upstream origin remove-ipsum)
+39.Remove any remote-tracking references that no longer exist on the remote=> git fetch --prune
+40.Get all the references of branches on remote=> git branch -a
+41.To pull changes from all remote branches that are referenced from local in one go=> git pull --all
+42.To delete a branch in remote from local=> git push <name of remote>(origin) :<name of branch> (here ':' is used to specify the deletion of the branch mentioned after it)
+43.Git rebase=> git pull --rebase (if you are in the same branch locally as to the branch you want to rebase with[ex- main remote -> main local])
+OR git rebase <branch name> (enter the branch name whose changes you want to incorporate in your current branch)
+44.To delete tag locally=> git tag -d <name of tag>(ex- git tag -d v0.1-alpha)
+45.Update existing tag to point to a new commit ID=> git tag -f <name of tag you want to update> <new commit ID where the tag should point to> (ex- git tag -f unstable 4b85c95)
+46.Push locally updated tag to remote=> git push --force origin(name of repo reference) <name of updated tag> (ex- git push --force origin unstable)
+
+
+
+Notes:
+1.Instead of 'mate' use 'npp' in gitbash
+2.".git" folder is the local tracker/repository. Deleting this folder will result in losing of the local Git repo.
+3.Since notepad++ was configured as core editor for GIT, so entering 'git commit' command without the '-m' message parameter opens the notepad++ text editor where we can enter the commit message(in multi lines also). After typing save the file or message(ctrl + s), then close the editor. It will automatically commit along with the typed message.
+4.Create or open a file in Git Bash=> npp <file name along with extension>
+5.Remove file in git bash=> rm <file name with extension> OR rm *.<file extension>(this will remove all files with the extension)
+6.Some options with git log command=> git log --oneline --graph --decorate --all
+a.--oneline: simplified commit entry with other info in one line.
+b.--graph: asterisk based graph denoting bracnhing hierarchy.
+c.--decorate: which commits are part of which branches and other labels inside git repo.
+d.--all: history of all branches in the repo
+7.We can create GIT aliases which is creating a new command which in turn is a short command representation of an existing longer command. To create an alias we can use the 'git config' command (ex:-git config --global alias.hist "log --oneline --graph --decorate --all" [here 'hist' will be the new alias command for 'log --oneline --graph --decorate --all']). Use the newly created alias as=> git hist. We can also pass additional parameters to an alias also (ex:- git hist -- <file name with extension> => gets file history).
+8.Renaming file using Git Bash=> mv <old file name with extension> <new file name with extension> (ex:- mv LICENSE.md LICENSE.txt).
+9.Stage all types of modifications(deletion, updation, addition, etc) all at once=> git add -A.
+10.Types of merges:- Fast forward merge, Automatic merge, Manual merge
+11.'HEAD' in GIT typically means last commit on a current branch. But we can also move the 'HEAD' pointer to a different commit, so its not always like that.
+12.To output the contents of a file in Git Bash use command: cat <file name with extension>
+13.If there is conflict while merging, it then enters a state called MERGING state where we have to manually resolve the merge conflicts.
+14.We can use mergetool to resolve conflicts if configured with GIT with command: 'git mergetool'. It then opens the configured mergetool window(ex- P4merge).
+15.After resolving conflict of all files we have to commit the resolved files.
+16.'.orig' files are original version of files which are sometimes created by GIT in certain situations(like during merge conflicts).
+17. GIT tags are just labels that we can put at any arbitrary commit point. If we don't specify the commit then it references the latest commit or HEAD.
+18. We can use the 'git show' command along with the tag name to get the details of the tag (ex:- git show v1.0)
+19.Three types of reset:-
+	a.Soft reset- least destructive, basically it just changes where the HEAD is pointing. It preserves the git staging files and the modified files.
+	b.Default/Mixed reset- It unstages all files with any change in staging area.
+	c.Hard- most destructive of reset modes, all file changes are wiped out along with any file with changes in the staging area.
+20. Git reflog shows all the different actions we have taken while in this repository.
+21.Linking existing repo on local(not linked to any remote) to an empty repository on remote:-
+	a.git remote add origin <link of repo on the repo> (ex-https://github.com/Souravsw/GIT-Udemy-Tutorial-Demo.git)
+	b.git branch -M main
+	c.git push -u origin(default remote reference name) main(default local branch name)
+The above steps are generally provided by the empty remote repo(on GitHub).
+22.'git remote' command manages all the remote connections from the current local repository to a remote or another repository someplace else on the internet(In this case on GitHub).
+23.'git remote add origin <link of repo on the repo>'=> here the remote command has another subcommand called 'add' which takes two parameters:
+	a.name of the remote reference we wat to create(ex- origin) [In this case we can put any name we want to in place of 'origin', but its just a convention to name it 'origin']
+	b.full url to the remote repository(ex- https://github.com/Souravsw/GIT-Udemy-Tutorial-Demo.git)
+24.'git branch -M main' command is for changing the local default branch name to 'main'. The '-M' parameter tells GIT to move or rename the current branch to the name we just specified(ex- main).
+25.'git push -u origin main --tags'==> In this command '-u' parameter is going to setup a tracking branch relationship between the 'main' branch on local repo and the 'main' branch in the remote repo, 'origin' is name of the remote repo that we are going to use to push our changes, 'main' is the name of the branch we are going to push up and '--tags' is for sending all the tags that we have in our repository up to GitHub. By default if we use just 'git push', then the tags are NOT going to be pushed to remote.
+26.'git remote -v' command tells us all the remote connections of our local to remote.
+27.To communicate with GitHub via SSH first we have to create a SSH key	on our local system:
+	a.Create a folder with name '.ssh' inside the 'Users' folder in 'C' drive.
+	b.Go inside '.ssh' folder and open GitBash or cmd prompt where we can use a tool called ssh-keygen to generate public and private keys.
+	c.Type command==>>ssh-keygen -t(for type) rsa(type of key) -C(for common name) "<your email(ex- something@gmail.com)>", and press enter.
+	d.The first propmt is for where to save this file(if you just press enter it will be saved to default location[In my case it was 'C:\Users\admin\.ssh']).
+	e.The second and third prompts are for passphrase(if you just press enter it will be configured NOT to ask for passphrase again in future[in my case I ignored it and pressed enter]).
+	f.Two files are generated 'id_rsa' and 'id_rsa.pub'. The '.pub' file is public key an the other one is private key.
+28.Use the public key contents to link to GitHub:
+	a.Copy the contents of 'id_rsa.pub' file and go to Github account settings->SSH keys page.
+	b.Click on 'New SSH key' button and enter the Title and Key(contents of id_rsa.pub file) fields. The Title field is unique to each machine so put something meaningful(ex-Git Tutorial Office Laptop Machine).
+	c.Click on 'Add SSH Key' button and enter the GitHub password. Then the key is created.
+	d.To confirm that this machine is able to communicate with github via SSH use SSH command and try to login. So go to created '.ssh' folder and open Git Bash.
+	e.Enter command 'ssh -T git@github.com' in git bash and press enter. If the machine has never connected to github before via SSH then a prompt will appear for confirmation. Type 'yes' and enter.
+	f.If successful it gives a message like-> Warning: Permanently added 'github.com' (ED25519) to the list of known hosts. Hi <username> You've successfully authenticated, but GitHub does not provide shell access.
+29.To copy files from one location to another in Git Bash use command: 'cp -R(recursive) <source location>/*(the star[*] is for all files insider source folder) .(the dot[.] is for destination folder)' (ex:-cp -R ~/Downloads/initializr-verekia-4.0/initializr/* .)
+30.If we have some local commits ready to be pushed but there are some commits from repo that we notice afterwards, if we do 'git status' then probably we will get some message like this with both pull and push changes-> 
+ex:- On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+  
+If we apply 'git pull' command we will get another window with some commit message. We can change or keep the message as it is and save the file and close the window. It will then automatically merge the changes. The we have to push our changes to GitHub using 'git push' command.
+31.If we change the name of repository(ex- GIT-Udemy-Tutorial-Demo-website- ==> GIT-Udemy-Tutorial-website) as a consequence off that any clones of that repo will need to update their references to continue the work.
+FROM:
+git remote -v
+origin  git@github.com:Souravsw/GIT-Udemy-Tutorial-Demo-website-.git (fetch)
+origin  git@github.com:Souravsw/GIT-Udemy-Tutorial-Demo-website-.git (push)
+TO:
+git remote -v
+origin  git@github.com:Souravsw/GIT-Udemy-Tutorial-website.git (fetch)
+origin  git@github.com:Souravsw/GIT-Udemy-Tutorial-website.git (push)
+
+To change the reference use command=> git remote set-url origin(name of remote reference) <https url>/<SSH url>
+ex:git remote set-url origin git@github.com:Souravsw/GIT-Udemy-Tutorial-website.git
+
+To get additional info regarding the remote reference use command=> git remote show <name of remote reference>(ex- git remote show origin)
+32.Git Rebase Theory: 
+file:///C:/Users/admin/Desktop/GIT_Rebase_Theory.png
+33.After deleting the tag locally if we want to delete the same tag in remote also through command line, use : git push origin(name of repo reference) :<name of deleted tag> (ex- git push origin :v0.2-alpha)
+34.If we want to compare a branch to any branch with time frame as parameter then in GitHub UI interface goto Pull Requests=> New Pull Request=> in base you can type in this syntax: <branch name>@{[number]days} (ex- develop@{3days} OR main@{2023-03-09} OR HEAD@{3}) and in compare: <another branch/tag name> (ex- unstable[it is a tag name used in tutorial] OR HEAD^[here '^' == -1])
+35.If we want to close an issue in github using git commit from command line, use syntax=> git commit -m "<message>, close #<issue ID>" (ex- git commit -m "Ignore Mac OS temp files, close #4") and then use 'git push'
+36.The Git express commit 'git commit -am "<some message>"' will NOT work on untracked/newly added files. It will only work for those files that are already getting tracked.
+37.In a scenario where you want to transfer your repository to an organization amd then fork the repository back to your own personal workspace, then you have to update the repository references in the local so as to point to the correct remote repositories. In the case of forking back to your own workspace you don't have to update the remote reference in the local. But for the repo in the organization you have to add new reference in the local. The steps are:
+	a.Check existing remote references=> git remote -v
+	b.Add new reference of the organization=> git remote add <name of new reference>(ex- upstream) <https/SSH url of organization repo> (ex- git remote add upstream git@github.com:my-demo-organization-example/GIT-Udemy-Tutorial-website.git)
+	c.Check if its added=> git remote -v
+	d.To fetch from the newly added remote reference=> git fetch <name of reference> (ex- git fetch upstream)
+38.To fetch from all reference remotes at the same time use=> git fetch --all

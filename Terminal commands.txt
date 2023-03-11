@@ -1,0 +1,4 @@
+1.List of directories=> dir
+2.Create new folder/directory=> mkdir <name of folder>
+3.Go inside folder in a directory=> cd <name of folder>
+4.Create new file=> touch <file name with extension>
