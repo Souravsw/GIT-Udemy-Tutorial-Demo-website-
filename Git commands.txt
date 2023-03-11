@@ -147,3 +147,4 @@ file:///C:/Users/admin/Desktop/GIT_Rebase_Theory.png
 	c.Check if its added=> git remote -v
 	d.To fetch from the newly added remote reference=> git fetch <name of reference> (ex- git fetch upstream)
 38.To fetch from all reference remotes at the same time use=> git fetch --all
+39.If you want to push changes to a specific remote reference include the reference name=> git push <reference name>(upstream) <name of branch>(develop) (ex- git push upstream develop)
